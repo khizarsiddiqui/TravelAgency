@@ -1,0 +1,31 @@
+   create table package
+       (
+       pkg_id number primary key,
+       trp_id number ,
+       destination varchar2(20),
+       source varchar2(20),
+      capacity number,
+       duration varchar2(20),
+       amount number)
+ /
+insert into package values (1000,2000,'Lahore','Karachi',200,'7 Hours',3000);
+insert into package values (1001,2001,'Karachi','Lahore',200,'7 Hours',3000);
+insert into package values (1002,2002,'Karachi','Islamabad',400,'11 Hours',5000);
+insert into package values (1003,2003,'Islamabad','Karachi',400,'11 Hours',5000);
+
+ create table booking (
+       book_id number primary key,
+        cust_id number references customer(cust_id),
+        agent_id number references agent(agent_id),
+        pkg_id number references package(pkg_id),
+        trp_id number,
+        destination varchar2(20),
+        source varchar2(20),
+        dept_day varchar2(20),
+      arrvl_day varchar2(20),
+      no_ofppl number,
+    paym_status varchar2(20),
+    amount number)
+   /
+insert into booking values (3000,200,150,1000,2000,'Lahore','Karachi','29-10-2021','30-10-2021',200,'Paid',3000);
+insert into booking values (3001,200,150,1001,2001,'Karachi','Lahore',29-11-2021,30-11-2021,200,'Paid',3000);

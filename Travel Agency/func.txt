@@ -1,0 +1,12 @@
+create or replace procedure details(v_id in number) 
+is 
+cursor my_cursor is
+select cust_id cid,agent_id aid,city_code cc,cust_name cname,cust_user cu,cust_pass cp,cust_phone cph,cust_cnic ccnic,cust_email cmail
+from customer;
+begin
+for a in my_cursor
+loop
+dbms_output.put_line(a.cid ||','|| a.aid || ','||a.cc ||','|| a.cname ||','|| a.cu ||','|| a.cp ||','|| a.cph ||','|| a.ccnic||','|| a.cmail);
+end loop;
+end;
+/

@@ -1,0 +1,18 @@
+create or replace procedure packg_cap
+is
+cursor capacity is
+select package.pkg_id,booking.pkg_id,capacity,booking.no_ofPpl from package,booking where package.pkg_id=booking.pkg_id;
+pkg_capacity package.capacity%type;
+bk_ppl booking.no_ofPpl%type;
+bk_pkid booking.pkg_id%type;
+pk_id package.pkg_id%type;
+begin
+open capacity;
+loop
+fetch capacity into bk_pkid,pk_id,pkg_capacity,bk_ppl;
+exit when capacity%notfound;
+pkg_capacity:=pkg_capacity+bk_ppl;
+update package set capacity=pkg_capacity;
+end loop;
+close capacity;
+end;

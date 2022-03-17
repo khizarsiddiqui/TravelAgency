@@ -1,0 +1,10 @@
+create or replace trigger cust_ins
+after insert
+on Customer
+for each row
+declare
+v_user int;
+begin
+select Customer.cust_id into v_user from Customer;
+dbms_output.put_line('Customer ID is: '||v_user);
+end;

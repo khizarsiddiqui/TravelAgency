@@ -1,0 +1,6 @@
+create function bk_amountCal(pk_amount int,bk_ppl int) return int
+begin
+declare bk_amount int;
+bk_amount:=pk_amount*bk_ppl;
+return(bk_amount);
+end;

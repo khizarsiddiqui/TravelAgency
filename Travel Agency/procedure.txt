@@ -1,0 +1,14 @@
+create or replace procedure Book_amountCal(bk_id in number)
+is
+cursor x is
+select package.amount,booking.no_ofppl
+from package,booking 
+where booking.pkg_id=package.pkg_id and book_id=bk_id;
+begin
+for i in x
+loop
+dbms_output.put_line(i.amount||','||i.no_ofppl);
+end loop;
+end;
+/
+execute Book_amountCal(3003);

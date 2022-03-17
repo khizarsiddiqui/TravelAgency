@@ -1,0 +1,5 @@
+create sequence seq_agent
+minvalue 1
+start with 101
+increment by 1
+cache 10;

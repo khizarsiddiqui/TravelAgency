@@ -1,0 +1,19 @@
+declare
+cursor Booking_amount is
+select Booking.pkg_id,Package.pkg_id,Package.amount,Booking.no_ofPpl
+from Package,Booking where Booking.pkg_id=Package.pkg_id;
+pkg_amount Package.amount%type;
+bk_ppl Booking.no_ofPpl%type;
+bk_amount Booking.amount%type;
+bk_pkid Booking.pkg_id%type;
+pk_id Package.pkg_id%type;
+begin
+open Booking_amount;
+loop
+fetch Booking_amount into bk_pkid,pk_id,pkg_amount,bk_ppl;
+exit when Booking_amount%notfound;
+bk_amount:=pkg_amount*bk_ppl;
+update Booking set amount=bk_amount where book_id=(select max(book_id) from Booking);
+end loop;
+close Booking_amount;
+end;
